@@ -1,0 +1,68 @@
+{% extends 'mainsite/base.html' %}
+{% block content %}
+
+  <!-- First Row -->
+  <div class="row mt-3" id="about">
+
+    <!-- Info Columns -->
+    <div class="col-6">
+      <h4 class="mb-4">Markov Chains</h4>
+      <p>Markov chains are interesting and they
+        can be used in a variety of different
+        applications. Things like speech
+        recognition, physics, modelling price markets,
+        and even the PageRank of a page.</p>
+
+      <p>This is just a simple markov text generator
+        that you can use to create text that looks
+        slightly believable.</p>
+    </div>
+    <div class="col-6">
+      <h4 class="mb-4">How It Works</h4>
+      <p>A markov text generator takes a text input,
+        parses through it to store the words, and the
+        frequency of words that appear after those words
+        from the text. Simply enter some text from a book
+        or any source material (the larger, the better),
+        and click the generate button.</p>
+
+        <p>Give it a go!</p>
+    </div>
+  </div>
+
+  <!-- Text Area -->
+  <div class="row mt-5 justify-content-center">
+    <div class="col-8">
+      <form class="" action="{% url 'mainsite-index' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group text-center">
+          <label for="exampleFormControlTextarea1">Markov Text Generator</label>
+          {% if text %}
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
+            name="textInput" required>{{ input }}</textarea>
+          {% else %}
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
+            name="textInput" required placeholder="Place Text Here . . ."></textarea>
+          {% endif %}
+
+        </div>
+
+        <label for="outputLength">Output Length:</label>
+        <input required class="col-2" type="text" class="form-control" id="outputLength" name="outputLength">
+
+        <button type="submit" class="btn btn-primary ml-4" id="generate">Generate</button>
+        <a class="btn btn-primary" href="{% url 'mainsite-index' %}" role="button">Reset</a>
+      </form>
+    </div>
+  </div>
+
+<!-- Output Text -->
+{% if text %}
+  <div class="row justify-content-center">
+      <div class="col-8 mt-5 border">
+        <p>{{ text }}</p>
+      </div>
+  </div>
+{% endif %}
+{% endblock content %}
