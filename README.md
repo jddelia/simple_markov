@@ -1,5 +1,6 @@
 # simple_markov
-A Simple Markov Text Generator.\n
+A Simple Markov Text Generator.
+
 This is made with django, and bootstrap.
 
 ![alt text](https://snag.gy/6wBLR4.jpg)
